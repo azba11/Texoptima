@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Up Products — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .onboarding-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background: var(--neutral-50);
+      padding: 40px 20px;
+    }
+    .onboarding-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--neutral-200);
+      box-shadow: var(--shadow-lg);
+      padding: 48px;
+      max-width: 720px;
+      width: 100%;
+    }
+    .onboarding-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .onboarding-progress .step {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--neutral-200);
+      transition: var(--transition);
+    }
+    .onboarding-progress .step.active { background: var(--primary); width: 28px; border-radius: 5px; }
+    .onboarding-progress .step.done { background: var(--primary); }
+    .product-group { border: 1px solid var(--neutral-200); border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px; }
+    .product-group-header {
+      padding: 14px 18px;
+      background: var(--neutral-50);
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .product-group-body { padding: 12px 18px 18px; }
+    .product-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+    }
+    .product-check input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+    @media (max-width: 576px) {
+      .onboarding-card { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="onboarding-container">
+    <div class="onboarding-card fade-in">
+      <div class="onboarding-progress">
+        <div class="step done"></div>
+        <div class="step done"></div>
+        <div class="step active"></div>
+        <div class="step"></div>
+      </div>
+      <h4 class="fw-bold mb-2 text-center">Add your products</h4>
+      <p style="color:var(--neutral-400);font-size:14px;text-align:center;margin-bottom:24px">Select products for each category. Add custom products as needed.</p>
+      <div class="mb-3">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" class="form-control search-input" id="productSearch" placeholder="Search products..." oninput="filterProducts()">
+        </div>
+      </div>
+      <div id="productGroups">
+        <div class="product-group" data-category="Lawn">
+          <div class="product-group-header">
+            <span><i class="fas fa-leaf text-primary" style="font-size:14px;margin-right:8px"></i>Lawn</span>
+            <span style="font-size:12px;color:var(--neutral-400)">6 products</span>
+          </div>
+          <div class="product-group-body">
+            <div class="product-check"><input type="checkbox" checked><span>Premium Lawn</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Printed Lawn</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Digital Lawn</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Luxury Lawn</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Organic Lawn</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Embroidered Lawn</span></div>
+            <div class="mt-2"><input type="text" class="form-control form-control-sm" placeholder="Add custom product..."></div>
+          </div>
+        </div>
+        <div class="product-group" data-category="Cotton">
+          <div class="product-group-header">
+            <span><i class="fas fa-cloud text-accent" style="font-size:14px;margin-right:8px"></i>Cotton</span>
+            <span style="font-size:12px;color:var(--neutral-400)">4 products</span>
+          </div>
+          <div class="product-group-body">
+            <div class="product-check"><input type="checkbox" checked><span>Fine Cotton</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Superior Cotton</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Brushed Cotton</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Cotton Silk</span></div>
+            <div class="mt-2"><input type="text" class="form-control form-control-sm" placeholder="Add custom product..."></div>
+          </div>
+        </div>
+        <div class="product-group" data-category="Khaddar">
+          <div class="product-group-header">
+            <span><i class="fas fa-tshirt" style="color:#8b5cf6;font-size:14px;margin-right:8px"></i>Khaddar</span>
+            <span style="font-size:12px;color:var(--neutral-400)">5 products</span>
+          </div>
+          <div class="product-group-body">
+            <div class="product-check"><input type="checkbox" checked><span>Classic Khaddar</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Premium Khaddar</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Printed Khaddar</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Heavy Khaddar</span></div>
+            <div class="product-check"><input type="checkbox" checked><span>Organic Khaddar</span></div>
+            <div class="mt-2"><input type="text" class="form-control form-control-sm" placeholder="Add custom product..."></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex gap-3 justify-content-between mt-4">
+        <a href="categories.html" class="btn btn-ghost"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="demo-data.html" class="btn btn-primary">Continue <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('.product-group-header').forEach(h => {
+      h.addEventListener('click', function() {
+        const body = this.nextElementSibling;
+        body.style.display = body.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+    function filterProducts() {
+      const q = document.getElementById('productSearch').value.toLowerCase();
+      document.querySelectorAll('.product-group').forEach(g => {
+        const checks = g.querySelectorAll('.product-check');
+        let visible = 0;
+        checks.forEach(c => {
+          const match = c.textContent.toLowerCase().includes(q);
+          c.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        g.style.display = visible > 0 ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

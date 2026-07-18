@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+    }
+    .auth-form-side {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: var(--white);
+    }
+    .auth-visual-side {
+      flex: 1;
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-form-container {
+      width: 100%;
+      max-width: 420px;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 991px) {
+      .auth-visual-side { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-form-side">
+      <div class="auth-form-container">
+        <a href="../index.html" class="d-inline-flex align-items-center gap-2 text-decoration-none mb-5">
+          <svg width="34" height="34" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-weight:700;font-size:20px;color:var(--neutral-900)">TexOptima</span>
+        </a>
+        <h3 class="fw-bold mb-1">Create your account</h3>
+        <p style="color:var(--neutral-400);font-size:15px;margin-bottom:28px">Start your 14-day free trial. No credit card needed.</p>
+        <form>
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label">Factory Name</label>
+                <input type="text" class="form-control" placeholder="e.g., Al-Noor Textile Mills">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label">Owner Name</label>
+                <input type="text" class="form-control" placeholder="e.g., Abdul Rahman">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="you@factory.com">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="+92 300 1234567">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Min. 8 characters">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Confirm password">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" class="form-check-input">
+              <span class="form-check-label">I agree to the <a href="#" style="font-weight:600">Terms of Service</a> and <a href="#" style="font-weight:600">Privacy Policy</a></span>
+            </label>
+          </div>
+          <a href="../onboarding/welcome.html" class="btn btn-primary w-100 btn-lg">Create Account <i class="fas fa-arrow-right"></i></a>
+        </form>
+        <div class="text-center mt-4">
+          <span style="font-size:14px;color:var(--neutral-400)">Already have an account?</span>
+          <a href="login.html" style="font-size:14px;font-weight:600">Sign in</a>
+        </div>
+      </div>
+    </div>
+    <div class="auth-visual-side">
+      <div style="max-width:400px">
+        <h3 style="color:white;font-weight:700;margin-bottom:8px">Why TexOptima?</h3>
+        <p style="color:rgba(255,255,255,0.6);margin-bottom:32px;font-size:15px">Join hundreds of textile businesses already using AI-powered management.</p>
+        <div class="d-flex flex-column gap-3">
+          <div class="benefit-item">
+            <i class="fas fa-robot" style="color:#6ee7b7;font-size:18px"></i>
+            <div>
+              <div style="color:white;font-weight:600;font-size:14px">AI-Driven Insights</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:13px">Forecast demand and detect anomalies automatically.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-chart-bar" style="color:#6ee7b7;font-size:18px"></i>
+            <div>
+              <div style="color:white;font-weight:600;font-size:14px">Real-time Analytics</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:13px">Monitor sales, inventory, and revenue in one place.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-shield-alt" style="color:#6ee7b7;font-size:18px"></i>
+            <div>
+              <div style="color:white;font-weight:600;font-size:14px">Enterprise Security</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:13px">Your data is encrypted and securely stored.</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-headset" style="color:#6ee7b7;font-size:18px"></i>
+            <div>
+              <div style="color:white;font-weight:600;font-size:14px">24/7 Support</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:13px">Our team is always ready to help you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

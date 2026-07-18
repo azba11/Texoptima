@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales History — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand"><div class="brand-icon"><svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-text">TexOptima</div></div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a href="../dashboard/index.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="categories.html" class="sidebar-link"><i class="fas fa-folder"></i> Categories</a>
+        <a href="products.html" class="sidebar-link"><i class="fas fa-box"></i> Products</a>
+        <a href="stock.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Stock</a>
+        <a href="sales.html" class="sidebar-link active"><i class="fas fa-receipt"></i> Sales</a>
+        <div class="sidebar-section">AI & Analytics</div>
+        <a href="forecast.html" class="sidebar-link"><i class="fas fa-chart-line"></i> AI Forecast</a>
+        <a href="anomalies.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Anomalies</a>
+        <a href="reports.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a>
+        <div class="sidebar-section">Account</div>
+        <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" style="margin-top:8px"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <div>
+            <div class="breadcrumb">
+              <a href="../dashboard/index.html">Dashboard</a>
+              <span class="separator">/</span>
+              <span class="current">Sales</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="avatar avatar-sm">AR</div>
+            <span style="font-size:14px;font-weight:500;color:var(--neutral-700)" class="d-none d-md-inline">Abdul Rahman</span>
+          </div>
+        </div>
+      </header>
+      <div class="app-content">
+        <div class="page-header d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <h2>Sales History</h2>
+            <p>25 transactions this month. Total revenue: Rs. 688,100</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('#addSaleModal')"><i class="fas fa-plus"></i> Record Sale</button>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-md-3 col-6">
+            <div class="metric-card">
+              <div class="metric-label">Total Sales</div>
+              <div class="metric-value">25</div>
+              <div class="metric-change text-success">This month</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="metric-card">
+              <div class="metric-label">Revenue</div>
+              <div class="metric-value">Rs. 688K</div>
+              <div class="metric-change text-success">+9.3% vs last month</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="metric-card">
+              <div class="metric-label">Pending Payments</div>
+              <div class="metric-value" style="color:var(--warning)">Rs. 104K</div>
+              <div class="metric-change text-warning">4 invoices</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="metric-card">
+              <div class="metric-label">Avg. Sale Value</div>
+              <div class="metric-value">Rs. 27.5K</div>
+              <div class="metric-change">Per transaction</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-box" style="flex:1;max-width:320px">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-control search-input" placeholder="Search sales...">
+          </div>
+          <select class="form-select" style="min-width:140px">
+            <option>All Payment</option>
+            <option>Paid</option>
+            <option>Pending</option>
+          </select>
+          <select class="form-select" style="min-width:140px">
+            <option>All Types</option>
+            <option>Wholesale</option>
+            <option>Retail</option>
+          </select>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Invoice</th>
+                <th>Product</th>
+                <th>Customer</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Type</th>
+                <th>Payment</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="font-weight:600">#1001</td><td>Premium Lawn</td><td>Fatima Textiles</td><td>50 m</td><td style="font-weight:600">Rs. 42,500</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 1</td></tr>
+              <tr><td style="font-weight:600">#1002</td><td>Fine Cotton</td><td>Crescent Fabrics</td><td>100 m</td><td style="font-weight:600">Rs. 55,000</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 2</td></tr>
+              <tr><td style="font-weight:600">#1003</td><td>Classic Khaddar</td><td>Al-Hamd Textiles</td><td>80 m</td><td style="font-weight:600">Rs. 36,000</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 3</td></tr>
+              <tr><td style="font-weight:600">#1004</td><td>Digital Lawn</td><td>Retail Customer</td><td>25 m</td><td style="font-weight:600">Rs. 23,750</td><td><span class="badge badge-neutral">Retail</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 4</td></tr>
+              <tr><td style="font-weight:600">#1005</td><td>Classic Denim</td><td>Denim World</td><td>60 m</td><td style="font-weight:600">Rs. 48,000</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-warning">Pending</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 5</td></tr>
+              <tr><td style="font-weight:600">#1006</td><td>Printed Lawn</td><td>Retail Customer</td><td>40 m</td><td style="font-weight:600">Rs. 26,000</td><td><span class="badge badge-neutral">Retail</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 6</td></tr>
+              <tr><td style="font-weight:600">#1007</td><td>Pure Linen</td><td>Linen House</td><td>20 m</td><td style="font-weight:600">Rs. 24,000</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 7</td></tr>
+              <tr><td style="font-weight:600">#1008</td><td>Superior Cotton</td><td>Cotton Plus</td><td>75 m</td><td style="font-weight:600">Rs. 52,500</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 8</td></tr>
+              <tr><td style="font-weight:600">#1009</td><td>Organic Lawn</td><td>Eco Fabrics</td><td>15 m</td><td style="font-weight:600">Rs. 16,500</td><td><span class="badge badge-primary">Wholesale</span></td><td><span class="badge badge-warning">Pending</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 9</td></tr>
+              <tr><td style="font-weight:600">#1010</td><td>Stretch Denim</td><td>Retail Customer</td><td>35 m</td><td style="font-weight:600">Rs. 33,250</td><td><span class="badge badge-neutral">Retail</span></td><td><span class="badge badge-success">Paid</span></td><td style="font-size:13px;color:var(--neutral-400)">Jun 10</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-4">
+          <span style="font-size:13px;color:var(--neutral-400)">Showing 10 of 25 sales</span>
+          <ul class="pagination m-0">
+            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="addSaleModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Record Sale</h5>
+        <button class="btn btn-ghost btn-icon modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-label">Product</label>
+              <div class="product-search-wrap">
+                <input type="text" class="form-control" id="saleProductInput" placeholder="Search products..." autocomplete="off">
+                <div class="product-search-dropdown" id="productDropdown"></div>
+              </div>
+              <input type="hidden" id="saleProduct" value="">
+              <input type="hidden" id="saleProductStock" value="0">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Quantity (meters)</label>
+              <input type="number" class="form-control" id="saleQty" placeholder="0">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Unit Price</label>
+              <input type="number" class="form-control" id="salePrice" placeholder="Rs. 0">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Customer</label>
+              <input type="text" class="form-control" id="saleCustomer" placeholder="Customer name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Customer Number</label>
+              <input type="tel" class="form-control" id="salePhone" placeholder="03XX-XXXXXXX">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Sale Type</label>
+              <select class="form-select">
+                <option>Retail</option>
+                <option>Wholesale</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Payment Status</label>
+              <select class="form-select" id="salePayment">
+                <option>Paid</option>
+                <option>Pending</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-check" style="justify-content:space-between;padding:0;margin:0">
+                <div>
+                  <div style="font-weight:500;font-size:14px;color:var(--neutral-700)">Generate Script</div>
+                  <div style="font-size:13px;color:var(--neutral-400)">Create a sale script / receipt for this transaction</div>
+                </div>
+                <div class="form-check form-switch m-0">
+                  <input class="form-check-input" type="checkbox" id="saleGenerateScript" checked style="width:44px;height:22px;cursor:pointer;float:none">
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close">Cancel</button>
+        <button class="btn btn-primary" onclick="handleRecordSale()">Record Sale</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" style="position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:8px"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    function initProductSearch() {
+      const input = document.getElementById('saleProductInput');
+      const dropdown = document.getElementById('productDropdown');
+      const hidden = document.getElementById('saleProduct');
+      let products = (TexOptima && TexOptima.products || []).filter(p => p.stock > 0 && p.status === 'active');
+      let highlighted = -1;
+
+      function render(filter) {
+        const q = (filter || '').toLowerCase();
+        const filtered = q ? products.filter(p => p.name.toLowerCase().includes(q)) : products;
+        if (filtered.length === 0) {
+          dropdown.innerHTML = '<div class="ps-empty">No products found</div>';
+          dropdown.classList.add('show');
+          return;
+        }
+        dropdown.innerHTML = filtered.map((p, i) =>
+          `<div class="ps-item" data-index="${i}" data-id="${p.id}" data-name="${p.name}" data-stock="${p.stock}">
+            <div>
+              <div class="ps-name">${p.name}</div>
+              <div class="ps-meta">Rs. ${p.price.toLocaleString()} / ${p.unit}</div>
+            </div>
+            <div class="ps-stock">${p.stock} ${p.unit === 'Meter' ? 'm' : 'units'}</div>
+          </div>`
+        ).join('');
+        dropdown.classList.add('show');
+        highlighted = -1;
+
+        dropdown.querySelectorAll('.ps-item').forEach(el => {
+          el.addEventListener('click', function() {
+            const name = this.dataset.name;
+            const stock = parseInt(this.dataset.stock);
+            input.value = name;
+            hidden.value = name;
+            document.getElementById('saleProductStock').value = stock;
+            dropdown.classList.remove('show');
+          });
+        });
+      }
+
+      input.addEventListener('input', function() { render(this.value); });
+
+      input.addEventListener('focus', function() {
+        if (!hidden.value) render(this.value);
+      });
+
+      input.addEventListener('keydown', function(e) {
+        const items = dropdown.querySelectorAll('.ps-item:not(.ps-empty)');
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          highlighted = Math.min(highlighted + 1, items.length - 1);
+          items.forEach((el, i) => el.classList.toggle('highlighted', i === highlighted));
+          if (items[highlighted]) items[highlighted].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          highlighted = Math.max(highlighted - 1, -1);
+          items.forEach((el, i) => el.classList.toggle('highlighted', i === highlighted));
+          if (items[highlighted]) items[highlighted].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+          if (highlighted >= 0 && items[highlighted]) {
+            items[highlighted].click();
+          }
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('show');
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.product-search-wrap')) {
+          dropdown.classList.remove('show');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initProductSearch);
+
+    function handleRecordSale() {
+      const qty = parseInt(document.getElementById('saleQty').value) || 0;
+      const available = parseInt(document.getElementById('saleProductStock').value) || 0;
+      const product = document.getElementById('saleProduct').value;
+
+      if (!product) {
+        showToast('Please select a product', 'error');
+        return;
+      }
+      if (qty <= 0) {
+        showToast('Please enter a valid quantity', 'error');
+        return;
+      }
+      if (qty > available) {
+        showToast('Insufficient stock — only ' + available + 'm available', 'error');
+        return;
+      }
+
+      closeModal('#addSaleModal');
+      showToast('Sale recorded', 'success');
+
+      if (document.getElementById('saleGenerateScript').checked) {
+        generateSaleScript();
+      }
+    }
+
+    function generateSaleScript() {
+      const product = document.getElementById('saleProduct').value || document.getElementById('saleProductInput').value;
+      const qty = document.getElementById('saleQty').value || '0';
+      const price = document.getElementById('salePrice').value || '0';
+      const customer = document.getElementById('saleCustomer').value || 'Walk-in Customer';
+      const phone = document.getElementById('salePhone').value || '—';
+      const payment = document.getElementById('salePayment').value;
+      const invoice = '#' + (1000 + Math.floor(Math.random() * 9000));
+      const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      const total = parseInt(qty) * parseInt(price);
+      const statusColor = payment === 'Paid' ? '#059669' : '#f59e0b';
+
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>Invoice ${invoice} — TexOptima</title>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { font-family: 'Inter', -apple-system, sans-serif; color: #1f2937; padding: 40px; max-width: 600px; margin: auto; -webkit-font-smoothing: antialiased; }
+          .header { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+          .header h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+          .divider { height: 1px; background: #e5e7eb; margin: 24px 0; }
+          .row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+          .row strong { color: #374151; }
+          .row span { color: #6b7280; }
+          table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+          th { text-align: left; font-size: 12px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 0; border-bottom: 1px solid #e5e7eb; }
+          td { padding: 12px 0; border-bottom: 1px solid #f3f4f6; font-size: 14px; }
+          td:last-child, th:last-child { text-align: right; }
+          .total-row td { font-weight: 700; font-size: 16px; border-bottom: none; padding-top: 16px; }
+          .status { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; color: white; background: ${statusColor}; margin-top: 16px; }
+          .footer { text-align: center; margin-top: 40px; font-size: 13px; color: #9ca3af; }
+          @media print { body { padding: 20px; } }
+        </style></head>
+        <body>
+          <div class="header">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><h1>TexOptima</h1><div style="font-size:13px;color:#6b7280">Sale Receipt</div></div>
+          </div>
+          <div class="row"><strong>Invoice</strong><span>${invoice}</span></div>
+          <div class="row"><strong>Date</strong><span>${date}</span></div>
+          <div class="row"><strong>Customer</strong><span>${customer}</span></div>
+          <div class="row"><strong>Phone</strong><span>${phone}</span></div>
+          <div class="divider"></div>
+          <table>
+            <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+            <tbody>
+              <tr><td>${product}</td><td>${qty} m</td><td>Rs. ${parseInt(price).toLocaleString()}</td><td>Rs. ${total.toLocaleString()}</td></tr>
+            </tbody>
+            <tfoot>
+              <tr class="total-row"><td colspan="3">Grand Total</td><td>Rs. ${total.toLocaleString()}</td></tr>
+            </tfoot>
+          </table>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <span style="font-size:14px;color:#6b7280">Payment Status</span>
+            <span style="display:inline-block;padding:4px 14px;border-radius:100px;font-size:13px;font-weight:600;color:white;background:${statusColor}">${payment}</span>
+          </div>
+          <div class="divider"></div>
+          <p style="font-size:14px;color:#6b7280;text-align:center;line-height:1.6">Thank you for your business!</p>
+          <div class="footer">TexOptima — AI-Powered Textile Management</div>
+          <script>window.onload = function() { window.print(); }; <\/script>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>

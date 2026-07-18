@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand"><div class="brand-icon"><svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-text">TexOptima</div></div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a href="../dashboard/index.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="categories.html" class="sidebar-link"><i class="fas fa-folder"></i> Categories</a>
+        <a href="products.html" class="sidebar-link"><i class="fas fa-box"></i> Products</a>
+        <a href="stock.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Stock</a>
+        <a href="sales.html" class="sidebar-link"><i class="fas fa-receipt"></i> Sales</a>
+        <div class="sidebar-section">AI &amp; Analytics</div>
+        <a href="forecast.html" class="sidebar-link"><i class="fas fa-chart-line"></i> AI Forecast</a>
+        <a href="anomalies.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Anomalies</a>
+        <a href="reports.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a>
+        <div class="sidebar-section">Account</div>
+        <a href="profile.html" class="sidebar-link active"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" style="margin-top:8px"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <div><div class="breadcrumb"><a href="../dashboard/index.html">Dashboard</a><span class="separator">/</span><span class="current">Profile</span></div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="avatar avatar-sm">AR</div>
+            <span style="font-size:14px;font-weight:500;color:var(--neutral-700)" class="d-none d-md-inline">Abdul Rahman</span>
+          </div>
+        </div>
+      </header>
+      <div class="app-content">
+        <div class="page-header">
+          <h2>Profile</h2>
+          <p>Manage your account details and factory information.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card text-center">
+              <div class="card-body">
+                <div class="avatar avatar-lg" style="width:80px;height:80px;font-size:32px;margin:0 auto 16px">AR</div>
+                <h5 class="fw-bold mb-1">Abdul Rahman</h5>
+                <div style="font-size:14px;color:var(--neutral-400);margin-bottom:4px">abdul@alnoor.com</div>
+                <div style="font-size:13px;color:var(--neutral-400);margin-bottom:20px">Member since January 2025</div>
+                <span class="badge badge-primary" style="font-size:13px;padding:6px 16px">Professional Plan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-header"><h5 class="m-0">Account Information</h5></div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Factory Name</label>
+                      <input type="text" class="form-control" value="Al-Noor Textile Mills">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Owner Name</label>
+                      <input type="text" class="form-control" value="Abdul Rahman">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input type="email" class="form-control" value="abdul@alnoor.com">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Phone Number</label>
+                      <input type="tel" class="form-control" value="+92 300 1234567">
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="showToast('Profile updated', 'success')">Save Changes</button>
+              </div>
+            </div>
+
+            <div class="card mt-4">
+              <div class="card-header"><h5 class="m-0">Change Password</h5></div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Current Password</label>
+                      <input type="password" class="form-control" placeholder="Enter current password">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">New Password</label>
+                      <input type="password" class="form-control" placeholder="Enter new password">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label">Confirm Password</label>
+                      <input type="password" class="form-control" placeholder="Confirm new password">
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="showToast('Password updated', 'success')">Update Password</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toastContainer" style="position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:8px"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

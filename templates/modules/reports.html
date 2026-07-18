@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand"><div class="brand-icon"><svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-text">TexOptima</div></div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a href="../dashboard/index.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="categories.html" class="sidebar-link"><i class="fas fa-folder"></i> Categories</a>
+        <a href="products.html" class="sidebar-link"><i class="fas fa-box"></i> Products</a>
+        <a href="stock.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Stock</a>
+        <a href="sales.html" class="sidebar-link"><i class="fas fa-receipt"></i> Sales</a>
+        <div class="sidebar-section">AI &amp; Analytics</div>
+        <a href="forecast.html" class="sidebar-link"><i class="fas fa-chart-line"></i> AI Forecast</a>
+        <a href="anomalies.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Anomalies</a>
+        <a href="reports.html" class="sidebar-link active"><i class="fas fa-file-alt"></i> Reports</a>
+        <div class="sidebar-section">Account</div>
+        <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" style="margin-top:8px"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <div><div class="breadcrumb"><a href="../dashboard/index.html">Dashboard</a><span class="separator">/</span><span class="current">Reports</span></div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="avatar avatar-sm">AR</div>
+            <span style="font-size:14px;font-weight:500;color:var(--neutral-700)" class="d-none d-md-inline">Abdul Rahman</span>
+          </div>
+        </div>
+      </header>
+      <div class="app-content">
+        <div class="page-header">
+          <h2>Reports</h2>
+          <p>Generate and export professional business reports.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:20px"><i class="fas fa-file-invoice-dollar"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">Sales Report</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">June 2025</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Complete sales breakdown with revenue, top products, and customer analysis.</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Report generated', 'success')"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                  <button class="btn btn-secondary btn-sm"><i class="fas fa-file-excel"></i> Export CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--warning-bg);display:flex;align-items:center;justify-content:center;color:var(--warning);font-size:20px"><i class="fas fa-boxes"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">Inventory Report</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">Current stock levels</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Detailed inventory analysis with stock levels, valuations, and movement history.</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Report generated', 'success')"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                  <button class="btn btn-secondary btn-sm"><i class="fas fa-file-excel"></i> Export CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--success-bg);display:flex;align-items:center;justify-content:center;color:var(--success);font-size:20px"><i class="fas fa-chart-pie"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">Financial Summary</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">Q2 2025</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Revenue, profit margins, cost analysis, and financial performance metrics.</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Report generated', 'success')"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                  <button class="btn btn-secondary btn-sm"><i class="fas fa-file-excel"></i> Export CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:20px"><i class="fas fa-robot"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">AI Forecast Report</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">July - August 2025</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Machine learning predictions, demand trends, and production recommendations.</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Report generated', 'success')"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                  <button class="btn btn-secondary btn-sm"><i class="fas fa-file-excel"></i> Export CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--danger-bg);display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:20px"><i class="fas fa-exclamation-triangle"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">Anomaly Report</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">This month</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Detected anomalies, severity analysis, and resolution recommendations.</div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary btn-sm" onclick="showToast('Report generated', 'success')"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                  <button class="btn btn-secondary btn-sm"><i class="fas fa-file-excel"></i> Export CSV</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div style="width:48px;height:48px;border-radius:var(--radius);background:var(--neutral-100);display:flex;align-items:center;justify-content:center;color:var(--neutral-500);font-size:20px"><i class="fas fa-calendar-alt"></i></div>
+                  <div>
+                    <h5 class="m-0" style="font-size:16px">Custom Report</h5>
+                    <div style="font-size:13px;color:var(--neutral-400)">Select date range</div>
+                  </div>
+                </div>
+                <div style="font-size:13px;color:var(--neutral-500);margin-bottom:16px">Build a custom report with your preferred metrics and date range.</div>
+                <button class="btn btn-secondary btn-sm" onclick="openModal('#customReportModal')"><i class="fas fa-sliders"></i> Customize</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="customReportModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Custom Report</h5>
+        <button class="btn btn-ghost btn-icon modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Report Type</label>
+              <select class="form-select">
+                <option>Sales</option>
+                <option>Inventory</option>
+                <option>Financial</option>
+                <option>Forecast</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Format</label>
+              <select class="form-select">
+                <option>PDF</option>
+                <option>CSV</option>
+                <option>Excel</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">Start Date</label>
+              <input type="date" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">End Date</label>
+              <input type="date" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal('#customReportModal'); showToast('Report generated', 'success')"><i class="fas fa-download"></i> Generate Report</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" style="position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:8px"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Forecast — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+   <style>
+     .forecast-bar { height: 32px; border-radius: 6px; display: flex; align-items: center; padding: 0 12px; font-size: 13px; font-weight: 600; color: white; min-width: 60px; }
+     .forecast-mode-btn { transition: all 0.15s; }
+     .forecast-mode-btn:hover { opacity: 0.9; }
+     .forecast-mode-btn.active { background: var(--primary); color: white; }
+     .card.mb-5 .table-container table td,
+     .card.mb-5 .table-container table th { padding: 10px 10px; white-space: nowrap; vertical-align: middle; }
+     .card.mb-5 .table-container table th { font-size: 12px; }
+     .card.mb-5 .table-container table td { font-size: 13px; }
+     .card.mb-5 .table-container table td:first-child,
+     .card.mb-5 .table-container table th:first-child { padding-left: 16px; }
+     .card.mb-5 .table-container table td:last-child,
+     .card.mb-5 .table-container table th:last-child { padding-right: 16px; }
+     .card.mb-5 .badge { font-size: 11px; padding: 3px 10px; }
+   </style>
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand"><div class="brand-icon"><svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-text">TexOptima</div></div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a href="../dashboard/index.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="categories.html" class="sidebar-link"><i class="fas fa-folder"></i> Categories</a>
+        <a href="products.html" class="sidebar-link"><i class="fas fa-box"></i> Products</a>
+        <a href="stock.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Stock</a>
+        <a href="sales.html" class="sidebar-link"><i class="fas fa-receipt"></i> Sales</a>
+        <div class="sidebar-section">AI &amp; Analytics</div>
+        <a href="forecast.html" class="sidebar-link active"><i class="fas fa-chart-line"></i> AI Forecast</a>
+        <a href="anomalies.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Anomalies</a>
+        <a href="reports.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a>
+        <div class="sidebar-section">Account</div>
+        <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" style="margin-top:8px"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <div><div class="breadcrumb"><a href="../dashboard/index.html">Dashboard</a><span class="separator">/</span><span class="current">AI Forecast</span></div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="avatar avatar-sm">AR</div>
+            <span style="font-size:14px;font-weight:500;color:var(--neutral-700)" class="d-none d-md-inline">Abdul Rahman</span>
+          </div>
+        </div>
+      </header>
+      <div class="app-content">
+        <div class="page-header">
+          <h2>AI Demand Forecast</h2>
+          <p>Machine learning predictions for upcoming demand. Updated monthly.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-md-4">
+            <div class="card card-equal bg-primary-light" style="border-color:var(--primary)">
+              <div class="card-body">
+                <div style="font-size:13px;color:var(--primary);font-weight:500;margin-bottom:4px">Forecast Accuracy</div>
+                <div style="font-size:32px;font-weight:700;color:var(--primary-dark)">94%</div>
+                <div style="font-size:13px;color:var(--primary)">+2% from last month</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div style="font-size:13px;color:var(--neutral-400);font-weight:500;margin-bottom:4px">Next Forecast</div>
+                <div style="font-size:32px;font-weight:700;color:var(--neutral-900)">July 2025</div>
+                <div style="font-size:13px;color:var(--neutral-400)">3 products with high demand</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-equal">
+              <div class="card-body">
+                <div style="font-size:13px;color:var(--neutral-400);font-weight:500;margin-bottom:4px">Products Analyzed</div>
+                <div style="font-size:32px;font-weight:700;color:var(--neutral-900)">25</div>
+                <div style="font-size:13px;color:var(--neutral-400)">All active products</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="m-0">Forecast Configuration</h5>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--primary-bg);border-radius:var(--radius);margin-bottom:24px;flex-wrap:wrap">
+              <i class="fas fa-database text-primary" style="font-size:16px"></i>
+              <span style="font-size:14px;color:var(--neutral-600)">Recorded Data:</span>
+              <span style="font-size:14px;font-weight:600;color:var(--neutral-800)" id="dataRangeLabel">Jun 1 – Jun 25, 2025</span>
+              <span style="font-size:13px;color:var(--neutral-400)" id="dataDaysLabel">(25 days)</span>
+            </div>
+            <div class="d-flex align-items-center gap-3 mb-4">
+              <span style="font-size:13px;font-weight:600;color:var(--neutral-700)">Forecast Mode</span>
+              <div class="d-flex" style="border:1px solid var(--neutral-200);border-radius:var(--radius);overflow:hidden">
+                <button class="forecast-mode-btn active" data-mode="month" style="padding:7px 16px;font-size:13px;font-weight:500;border:none;cursor:pointer;background:var(--primary);color:white;transition:var(--transition)">Month-wise</button>
+                <button class="forecast-mode-btn" data-mode="range" style="padding:7px 16px;font-size:13px;font-weight:500;border:none;cursor:pointer;background:transparent;color:var(--neutral-600);transition:var(--transition)">Date Range</button>
+              </div>
+            </div>
+            <div id="forecastMonthPanel">
+              <div class="row g-3">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="form-label">Select Month</label>
+                    <select class="form-select" id="forecastMonth">
+                      <option>July 2025</option>
+                      <option>August 2025</option>
+                      <option>September 2025</option>
+                      <option>October 2025</option>
+                      <option>November 2025</option>
+                      <option>December 2025</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="runForecast()"><i class="fas fa-play me-2"></i>Run Forecast</button>
+            </div>
+            <div id="forecastRangePanel" style="display:none">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="form-label">From Date</label>
+                    <input type="date" class="form-control" id="forecastFrom">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="form-label">To Date</label>
+                    <input type="date" class="form-control" id="forecastTo">
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="runForecast()"><i class="fas fa-play me-2"></i>Run Forecast</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-5">
+          <div class="card-header">
+            <h5 class="m-0" id="forecastTableTitle">Demand Forecast</h5>
+            <div class="d-flex align-items-center gap-2">
+              <span style="font-size:13px;color:var(--neutral-400);font-weight:500" id="forecastPeriodLabel">Forecast Period: July 2025</span>
+              <span class="badge badge-primary" id="forecastBadge">Next month</span>
+            </div>
+          </div>
+          <div class="table-container" style="border:none;border-radius:0;overflow-x:visible">
+            <table style="width:100%;table-layout:auto">
+              <colgroup>
+                <col style="width:auto">
+                <col style="width:auto">
+                <col style="width:auto">
+                <col style="width:auto">
+                <col style="width:auto">
+                <col style="width:auto">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th style="white-space:nowrap">Demand (Next Month)</th>
+                  <th>Reliability</th>
+                  <th>Trend</th>
+                  <th style="white-space:nowrap">AI Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div style="font-weight:500">Premium Lawn</div></td>
+                  <td><span class="badge badge-primary">Lawn</span></td>
+                  <td><div style="font-weight:600">320 m</div><div style="font-size:12px;color:var(--neutral-400)">Current Stock: 420 m</div></td>
+                  <td><span class="badge badge-success">High Reliability</span></td>
+                  <td><span class="badge badge-success"><i class="fas fa-arrow-up"></i> Up</span></td>
+                  <td><span style="font-size:13px;color:var(--success)">Increase Production</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:500">Printed Lawn</div></td>
+                  <td><span class="badge badge-primary">Lawn</span></td>
+                  <td><div style="font-weight:600">280 m</div><div style="font-size:12px;color:var(--neutral-400)">Current Stock: 280 m</div></td>
+                  <td><span class="badge badge-success">High Reliability</span></td>
+                  <td><span class="badge badge-success"><i class="fas fa-arrow-up"></i> Up</span></td>
+                  <td><span style="font-size:13px;color:var(--success)">Maintain Production</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:500">Fine Cotton</div></td>
+                  <td><span class="badge badge-accent" style="background:var(--accent-bg);color:var(--accent)">Cotton</span></td>
+                  <td><div style="font-weight:600">420 m</div><div style="font-size:12px;color:var(--neutral-400)">Current Stock: 500 m</div></td>
+                  <td><span class="badge badge-success">High Reliability</span></td>
+                  <td><span class="badge badge-neutral"><i class="fas fa-minus"></i> Stable</span></td>
+                  <td><span style="font-size:13px;color:var(--neutral-500)">Monitor Inventory</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:500">Classic Khaddar</div></td>
+                  <td><span class="badge" style="background:#f3e8ff;color:#8b5cf6">Khaddar</span></td>
+                  <td><div style="font-weight:600">350 m</div><div style="font-size:12px;color:var(--neutral-400)">Current Stock: 380 m</div></td>
+                  <td><span class="badge badge-warning">Medium Reliability</span></td>
+                  <td><span class="badge badge-danger"><i class="fas fa-arrow-down"></i> Down</span></td>
+                  <td><span style="font-size:13px;color:var(--danger)">Reduce Production</span></td>
+                </tr>
+                <tr>
+                  <td><div style="font-weight:500">Classic Denim</div></td>
+                  <td><span class="badge" style="background:#eef2ff;color:#6366f1">Denim</span></td>
+                  <td><div style="font-weight:600">250 m</div><div style="font-size:12px;color:var(--neutral-400)">Current Stock: 300 m</div></td>
+                  <td><span class="badge badge-success">High Reliability</span></td>
+                  <td><span class="badge badge-success"><i class="fas fa-arrow-up"></i> Up</span></td>
+                  <td><span style="font-size:13px;color:var(--success)">Prepare for Seasonal Demand</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Data range from sales
+      var sales = TexOptima && TexOptima.sales || [];
+      if (sales.length) {
+        var dates = sales.map(function(s) { return new Date(s.date); });
+        var min = new Date(Math.min.apply(null, dates));
+        var max = new Date(Math.max.apply(null, dates));
+        var diff = Math.round((max - min) / (1000*60*60*24)) + 1;
+        document.getElementById('dataRangeLabel').textContent =
+          min.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' – ' +
+          max.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        document.getElementById('dataDaysLabel').textContent = '(' + diff + ' days)';
+      }
+
+      // Set default date range (last 30 days from today)
+      var today = new Date();
+      var thirtyAgo = new Date(today);
+      thirtyAgo.setDate(thirtyAgo.getDate() - 30);
+      document.getElementById('forecastTo').value = today.toISOString().slice(0,10);
+      document.getElementById('forecastFrom').value = thirtyAgo.toISOString().slice(0,10);
+
+      // Mode toggle
+      var btns = document.querySelectorAll('.forecast-mode-btn');
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          btns.forEach(function(b) {
+            b.style.background = 'transparent';
+            b.style.color = 'var(--neutral-600)';
+            b.classList.remove('active');
+          });
+          this.style.background = 'var(--primary)';
+          this.style.color = 'white';
+          this.classList.add('active');
+          var mode = this.dataset.mode;
+          document.getElementById('forecastMonthPanel').style.display = mode === 'month' ? 'block' : 'none';
+          document.getElementById('forecastRangePanel').style.display = mode === 'range' ? 'block' : 'none';
+        });
+      });
+    });
+
+    function runForecast() {
+      var mode = document.querySelector('.forecast-mode-btn.active') ?
+        document.querySelector('.forecast-mode-btn.active').dataset.mode : 'month';
+
+      if (mode === 'range') {
+        var from = document.getElementById('forecastFrom').value;
+        var to = document.getElementById('forecastTo').value;
+        if (!from || !to) { showToast('Please select both From and To dates', 'error'); return; }
+        var d1 = new Date(from), d2 = new Date(to);
+        var days = Math.round((d2 - d1) / (1000*60*60*24)) + 1;
+        if (days < 30) { showToast('Minimum 30 days of data required to run forecast. Selected: ' + days + ' days.', 'error'); return; }
+        var label = d1.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' – ' +
+                    d2.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        document.getElementById('forecastTableTitle').textContent = 'Demand Forecast';
+        document.getElementById('forecastPeriodLabel').textContent = 'Forecast Period: ' + label;
+        document.getElementById('forecastBadge').textContent = days + ' days';
+      } else {
+        var month = document.getElementById('forecastMonth').value;
+        document.getElementById('forecastTableTitle').textContent = 'Demand Forecast';
+        document.getElementById('forecastPeriodLabel').textContent = 'Forecast Period: ' + month;
+        document.getElementById('forecastBadge').textContent = 'AI Projection';
+      }
+
+      showToast('Forecast generated successfully', 'success');
+      // Scroll to the forecast table
+      document.querySelector('.card.mb-5 .card-header') &&
+        document.querySelector('.card.mb-5 .card-header').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

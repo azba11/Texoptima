@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories — TexOptima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand"><div class="brand-icon"><svg width="36" height="36" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#059669"/><path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-text">TexOptima</div></div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a href="../dashboard/index.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+        <a href="categories.html" class="sidebar-link active"><i class="fas fa-folder"></i> Categories</a>
+        <a href="products.html" class="sidebar-link"><i class="fas fa-box"></i> Products</a>
+        <a href="stock.html" class="sidebar-link"><i class="fas fa-warehouse"></i> Stock</a>
+        <a href="sales.html" class="sidebar-link"><i class="fas fa-receipt"></i> Sales</a>
+        <div class="sidebar-section">AI & Analytics</div>
+        <a href="forecast.html" class="sidebar-link"><i class="fas fa-chart-line"></i> AI Forecast</a>
+        <a href="anomalies.html" class="sidebar-link"><i class="fas fa-exclamation-triangle"></i> Anomalies</a>
+        <a href="reports.html" class="sidebar-link"><i class="fas fa-file-alt"></i> Reports</a>
+        <div class="sidebar-section">Account</div>
+        <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" style="margin-top:8px"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+          <div>
+            <div class="breadcrumb">
+              <a href="../dashboard/index.html">Dashboard</a>
+              <span class="separator">/</span>
+              <span class="current">Categories</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-ghost btn-icon" onclick="showToast('Categories refreshed', 'success')"><i class="fas fa-sync-alt"></i></button>
+          <div class="d-flex align-items-center gap-2">
+            <div class="avatar avatar-sm">AR</div>
+            <span style="font-size:14px;font-weight:500;color:var(--neutral-700)" class="d-none d-md-inline">Abdul Rahman</span>
+          </div>
+        </div>
+      </header>
+      <div class="app-content">
+        <div class="page-header d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <h2>Categories</h2>
+            <p>Manage your fabric categories.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('#addCategoryModal')"><i class="fas fa-plus"></i> Add Category</button>
+        </div>
+        <div class="filter-bar">
+          <div class="search-box" style="flex:1;max-width:320px">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-control search-input" placeholder="Search categories...">
+          </div>
+          <select class="form-select" style="min-width:140px">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+        </div>
+        <div class="row g-4" id="categoriesList">
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:var(--primary-bg);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:18px"><i class="fas fa-leaf"></i></div>
+                  <span class="badge badge-success"><span class="status-indicator status-active"></span> Active</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Lawn</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">Premium cotton lawn fabrics for summer</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">6 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:var(--accent-bg);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:18px"><i class="fas fa-cloud"></i></div>
+                  <span class="badge badge-success"><span class="status-indicator status-active"></span> Active</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Cotton</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">High-quality pure cotton fabrics</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">4 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:#f3e8ff;display:flex;align-items:center;justify-content:center;color:#8b5cf6;font-size:18px"><i class="fas fa-tshirt"></i></div>
+                  <span class="badge badge-success"><span class="status-indicator status-active"></span> Active</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Khaddar</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">Traditional handwoven khaddar</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">5 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:var(--warning-bg);display:flex;align-items:center;justify-content:center;color:var(--warning);font-size:18px"><i class="fas fa-wind"></i></div>
+                  <span class="badge badge-success"><span class="status-indicator status-active"></span> Active</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Linen</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">Breathable linen fabric collection</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">3 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:#eef2ff;display:flex;align-items:center;justify-content:center;color:#6366f1;font-size:18px"><i class="fas fa-fill-drip"></i></div>
+                  <span class="badge badge-success"><span class="status-indicator status-active"></span> Active</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Denim</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">Durable denim fabrics</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">4 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card card-equal fade-in">
+              <div class="card-body">
+                <div class="d-flex align-items-start justify-content-between mb-3">
+                  <div style="width:44px;height:44px;border-radius:var(--radius);background:#fdf2f8;display:flex;align-items:center;justify-content:center;color:#ec4899;font-size:18px"><i class="fas fa-gem"></i></div>
+                  <span class="badge badge-neutral"><span class="status-indicator status-inactive"></span> Inactive</span>
+                </div>
+                <h5 class="fw-semibold mb-1">Silk</h5>
+                <p style="font-size:13px;color:var(--neutral-400);margin-bottom:12px">Luxurious silk fabric range</p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span style="font-size:13px;color:var(--neutral-500)">3 Products</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-ghost btn-icon" style="font-size:13px;color:var(--danger)"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="addCategoryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Add Category</h5>
+        <button class="btn btn-ghost btn-icon modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Category Name</label>
+          <input type="text" class="form-control" placeholder="e.g., Polyester">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" placeholder="Brief description of this category"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal('#addCategoryModal'); showToast('Category added', 'success')">Add Category</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" style="position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:8px"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

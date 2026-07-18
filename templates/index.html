@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TexOptima — AI-Powered Textile Business Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .landing-hero {
+      padding: 80px 0 80px;
+      min-height: 600px;
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #f8fafc 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .landing-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(5,150,105,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .landing-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--primary-bg);
+      color: var(--primary);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: 1px solid rgba(5,150,105,0.12);
+      margin-bottom: 20px;
+    }
+    .hero-dashboard-preview {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--neutral-200);
+      overflow: hidden;
+    }
+    .hero-dashboard-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .feature-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--neutral-200);
+      transition: var(--transition);
+      height: 100%;
+    }
+    .feature-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .step-card {
+      text-align: center;
+      padding: 36px 24px 32px;
+      background: var(--white);
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg);
+      height: 100%;
+      transition: var(--transition);
+    }
+    .step-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary-bg);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .testimonial-card {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--neutral-200);
+    }
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .pricing-card {
+      padding: 40px 32px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid var(--neutral-200);
+      text-align: center;
+      height: 100%;
+      position: relative;
+    }
+    .pricing-card.popular {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary), var(--shadow-lg);
+    }
+    .pricing-card.popular::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 16px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .nav-landing {
+      padding: 16px 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--neutral-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .footer-section h5 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--neutral-500);
+      margin-bottom: 16px;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li { margin-bottom: 8px; }
+    .footer-section ul li a { color: var(--neutral-400); font-size: 14px; }
+    .footer-section ul li a:hover { color: var(--primary); }
+    .ai-section-bg { background: linear-gradient(135deg, #022c22 0%, #064e3b 100%); }
+    @media (max-width: 991px) {
+      .landing-hero { padding: 48px 0 56px; min-height: auto; }
+      .landing-hero h1 { font-size: 2rem; }
+      .hero-dashboard-preview { margin-top: 24px; }
+      .feature-card { padding: 24px; }
+      .step-card { padding: 28px 20px 24px; }
+    }
+    @media (max-width: 575px) {
+      .landing-hero h1 { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-landing">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="flex-shrink:0">
+            <rect width="32" height="32" rx="8" fill="#059669"/>
+            <path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="font-weight:700;font-size:18px;color:var(--neutral-900);letter-spacing:-0.02em">TexOptima</span>
+        </a>
+        <div class="d-flex align-items-center gap-3">
+          <a href="auth/login.html" class="btn btn-ghost d-none d-md-inline-flex">Sign In</a>
+          <a href="auth/register.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="landing-hero">
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="hero-badge">
+            <i class="fas fa-sparkles"></i> AI-Powered Textile Management
+          </div>
+          <h1 class="display-4 fw-bold mb-3 lh-1">Intelligent Fabrics,<br>Smarter Decisions.</h1>
+          <p style="font-size:17px;color:var(--neutral-500);margin-bottom:28px;max-width:460px;line-height:1.7">
+            TexOptima helps textile SMEs manage inventory, forecast demand, detect anomalies, and grow revenue — all powered by artificial intelligence.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="auth/register.html" class="btn btn-primary btn-lg px-4">Start Free Trial <i class="fas fa-arrow-right ms-2"></i></a>
+            <a href="#features" class="btn btn-secondary btn-lg px-4">Learn More</a>
+          </div>
+          <div class="d-flex align-items-center gap-4 flex-wrap">
+            <div class="d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-primary" style="font-size:14px"></i>
+              <span style="font-size:14px;color:var(--neutral-500)">No credit card required</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <i class="fas fa-check-circle text-primary" style="font-size:14px"></i>
+              <span style="font-size:14px;color:var(--neutral-500)">14-day free trial</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-dashboard-preview">
+            <div style="padding:24px">
+              <div class="d-flex align-items-center justify-content-between mb-4">
+                <div style="display:flex;gap:10px">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#ef4444"></div>
+                  <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b"></div>
+                  <div style="width:10px;height:10px;border-radius:50%;background:#10b981"></div>
+                </div>
+                <span style="font-size:11px;color:var(--neutral-400);font-weight:600;letter-spacing:0.02em">TexOptima Dashboard</span>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-4">
+                  <div style="padding:14px;border:1px solid var(--neutral-200);border-radius:10px">
+                    <div style="font-size:11px;color:var(--neutral-400);margin-bottom:3px;font-weight:500">Products</div>
+                    <div style="font-size:22px;font-weight:700;color:var(--neutral-900);letter-spacing:-0.02em">25</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div style="padding:14px;border:1px solid var(--neutral-200);border-radius:10px">
+                    <div style="font-size:11px;color:var(--neutral-400);margin-bottom:3px;font-weight:500">Stock (m)</div>
+                    <div style="font-size:22px;font-weight:700;color:var(--neutral-900);letter-spacing:-0.02em">3,825</div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div style="padding:14px;border:1px solid var(--neutral-200);border-radius:10px">
+                    <div style="font-size:11px;color:var(--neutral-400);margin-bottom:3px;font-weight:500">Revenue</div>
+                    <div style="font-size:22px;font-weight:700;color:var(--neutral-900);letter-spacing:-0.02em">Rs. 295K</div>
+                  </div>
+                </div>
+              </div>
+              <div style="height:160px;background:linear-gradient(90deg, var(--primary-bg) 0%, #f0fdf4 100%);border-radius:10px;display:flex;align-items:flex-end;padding:16px">
+                <div style="display:flex;align-items:flex-end;gap:10px;width:100%;height:100%">
+                  <div style="flex:1;height:60%;background:var(--primary);border-radius:4px 4px 0 0;opacity:0.5"></div>
+                  <div style="flex:1;height:75%;background:var(--primary);border-radius:4px 4px 0 0;opacity:0.6"></div>
+                  <div style="flex:1;height:55%;background:var(--primary);border-radius:4px 4px 0 0;opacity:0.5"></div>
+                  <div style="flex:1;height:85%;background:var(--primary);border-radius:4px 4px 0 0;opacity:0.75"></div>
+                  <div style="flex:1;height:90%;background:var(--primary);border-radius:4px 4px 0 0;opacity:0.85"></div>
+                  <div style="flex:1;height:100%;background:var(--primary);border-radius:4px 4px 0 0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-5" style="background:var(--white)">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="hero-badge">Features</span>
+        <h2 class="fw-bold mb-3" style="letter-spacing:-0.025em">Everything You Need to Run Your Textile Business</h2>
+        <p style="color:var(--neutral-500);max-width:580px;margin:0 auto;font-size:16px;line-height:1.7">
+          From inventory tracking to AI-powered forecasting, TexOptima provides all the tools in one unified platform.
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon bg-primary-light text-primary"><i class="fas fa-warehouse"></i></div>
+            <h5 class="fw-semibold mb-2">Inventory Management</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">Track stock levels, manage categories, and receive low-stock alerts in real time.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon bg-accent-light text-accent"><i class="fas fa-robot"></i></div>
+            <h5 class="fw-semibold mb-2">AI Demand Forecasting</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">Predict future demand with machine learning to optimize production planning.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon bg-warning-light text-warning"><i class="fas fa-chart-line"></i></div>
+            <h5 class="fw-semibold mb-2">Sales Analytics</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">Visualize sales performance, revenue trends, and top-selling products.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon bg-danger-light text-danger"><i class="fas fa-exclamation-triangle"></i></div>
+            <h5 class="fw-semibold mb-2">Anomaly Detection</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">AI identifies unusual stock movements, price changes, and inventory discrepancies.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon bg-success-light text-success"><i class="fas fa-file-alt"></i></div>
+            <h5 class="fw-semibold mb-2">Smart Reports</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">Generate professional reports on inventory, sales, and business performance.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon" style="background:#f3e8ff;color:#8b5cf6"><i class="fas fa-mobile-alt"></i></div>
+            <h5 class="fw-semibold mb-2">Responsive Design</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0">Access your business data from any device — desktop, tablet, or mobile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-neutral-50">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="hero-badge">How It Works</span>
+        <h2 class="fw-bold mb-3">Get Started in 3 Simple Steps</h2>
+        <p style="color:var(--neutral-500);max-width:500px;margin:0 auto;font-size:16px">Set up your textile business on TexOptima and start making data-driven decisions.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h5 class="fw-semibold mb-2">Create Your Account</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0;line-height:1.6">Register your factory with basic details and set up your workspace in minutes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h5 class="fw-semibold mb-2">Set Up Products</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0;line-height:1.6">Add your categories and products, or explore with realistic demo data.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h5 class="fw-semibold mb-2">Start Managing</h5>
+            <p style="font-size:14px;color:var(--neutral-500);margin:0;line-height:1.6">Track inventory, record sales, and leverage AI insights to grow your business.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-section-bg py-5">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="hero-badge" style="background:rgba(255,255,255,0.1);color:#6ee7b7">AI Technology</span>
+          <h2 class="fw-bold mb-3 text-white">Predict Demand with Machine Learning</h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:16px;margin-bottom:24px">
+            Our AI models analyze historical sales data, seasonal trends, and market patterns to forecast demand for every product in your inventory — helping you produce the right quantities at the right time.
+          </p>
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-start gap-3">
+              <i class="fas fa-check-circle text-success mt-1"></i>
+              <div>
+                <div style="color:white;font-weight:600;font-size:14px">Reduce Overproduction</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:13px">AI insights help you align production with actual market demand.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <i class="fas fa-check-circle text-success mt-1"></i>
+              <div>
+                <div style="color:white;font-weight:600;font-size:14px">Minimize Stockouts</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:13px">Get early warnings when popular products are about to run out.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <i class="fas fa-check-circle text-success mt-1"></i>
+              <div>
+                <div style="color:white;font-weight:600;font-size:14px">Optimize Inventory Costs</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:13px">Maintain optimal stock levels and reduce holding costs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:32px">
+            <div style="display:flex;gap:16px;margin-bottom:20px">
+              <div style="flex:1;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px">
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:4px">Accuracy Rate</div>
+                <div style="font-size:28px;font-weight:700;color:#6ee7b7">94%</div>
+              </div>
+              <div style="flex:1;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px">
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:4px">Products Analyzed</div>
+                <div style="font-size:28px;font-weight:700;color:white">25</div>
+              </div>
+              <div style="flex:1;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px">
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:4px">Forecast Horizon</div>
+                <div style="font-size:28px;font-weight:700;color:white">3 mo</div>
+              </div>
+            </div>
+            <div style="height:120px;display:flex;align-items:flex-end;gap:12px">
+              <div style="flex:1;height:40%;background:#059669;border-radius:4px 4px 0 0;opacity:0.5"></div>
+              <div style="flex:1;height:65%;background:#059669;border-radius:4px 4px 0 0;opacity:0.6"></div>
+              <div style="flex:1;height:55%;background:#059669;border-radius:4px 4px 0 0;opacity:0.5"></div>
+              <div style="flex:1;height:80%;background:#059669;border-radius:4px 4px 0 0;opacity:0.7"></div>
+              <div style="flex:1;height:70%;background:#059669;border-radius:4px 4px 0 0;opacity:0.6"></div>
+              <div style="flex:1;height:95%;background:#059669;border-radius:4px 4px 0 0;opacity:0.8"></div>
+              <div style="flex:1;height:100%;background:#10b981;border-radius:4px 4px 0 0"></div>
+              <div style="flex:1;height:85%;background:#059669;border-radius:4px 4px 0 0;opacity:0.8"></div>
+              <div style="flex:1;height:90%;background:#10b981;border-radius:4px 4px 0 0"></div>
+              <div style="flex:1;height:75%;background:#059669;border-radius:4px 4px 0 0;opacity:0.7"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div style="background:var(--white);border:1px solid var(--neutral-200);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)">
+            <div class="d-flex align-items-center gap-2 mb-4">
+              <i class="fas fa-boxes text-primary" style="font-size:15px"></i>
+              <span style="font-size:11px;font-weight:600;color:var(--neutral-400);letter-spacing:0.08em">INVENTORY OVERVIEW</span>
+            </div>
+            <div style="display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap">
+              <span class="badge badge-primary" style="padding:4px 12px;font-size:12px;font-weight:500">Lawn</span>
+              <span style="padding:4px 12px;font-size:12px;font-weight:500;background:var(--success-bg);color:var(--success);border-radius:100px">Cotton</span>
+              <span style="padding:4px 12px;font-size:12px;font-weight:500;background:var(--warning-bg);color:var(--warning);border-radius:100px">Khaddar</span>
+              <span class="badge badge-primary" style="padding:4px 12px;font-size:12px;font-weight:500">Linen</span>
+              <span style="padding:4px 12px;font-size:12px;font-weight:500;background:var(--success-bg);color:var(--success);border-radius:100px">Denim</span>
+            </div>
+            <div class="d-flex flex-column" style="gap:18px">
+              <div>
+                <div class="d-flex justify-content-between mb-1">
+                  <span style="font-size:13px;font-weight:500;color:var(--neutral-500)">Stock Utilization</span>
+                  <span style="font-size:13px;font-weight:600;color:var(--neutral-800)">72%</span>
+                </div>
+                <div class="progress" style="height:6px;background:var(--neutral-100);border-radius:100px">
+                  <div class="progress-bar" style="width:72%;height:6px;border-radius:100px"></div>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between mb-1">
+                  <span style="font-size:13px;font-weight:500;color:var(--neutral-500)">Low Stock Items</span>
+                  <span style="font-size:13px;font-weight:600;color:var(--warning)">4 Products</span>
+                </div>
+                <div class="progress" style="height:6px;background:var(--neutral-100);border-radius:100px">
+                  <div class="progress-bar" style="width:16%;height:6px;border-radius:100px;background:var(--warning)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <span class="hero-badge">Smart Inventory</span>
+          <h2 class="fw-bold mb-3" style="letter-spacing:-0.025em">Complete Inventory Control</h2>
+          <p style="color:var(--neutral-500);font-size:16px;margin-bottom:28px;line-height:1.7;max-width:500px">
+            Organize fabrics by category, track stock levels in real time, set reorder thresholds, and never run out of your best-selling products.
+          </p>
+          <div class="d-flex flex-column" style="gap:16px">
+            <div class="d-flex align-items-center gap-3">
+              <div style="width:22px;height:22px;border-radius:50%;background:var(--primary-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fas fa-check text-primary" style="font-size:11px"></i>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:14px;color:var(--neutral-800);margin-bottom:1px">Category Management</div>
+                <div style="font-size:13px;color:var(--neutral-400);line-height:1.5">Organize products by fabric type: Lawn, Cotton, Khaddar, and more.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div style="width:22px;height:22px;border-radius:50%;background:var(--primary-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fas fa-check text-primary" style="font-size:11px"></i>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:14px;color:var(--neutral-800);margin-bottom:1px">Real-time Stock Tracking</div>
+                <div style="font-size:13px;color:var(--neutral-400);line-height:1.5">Know exactly how much fabric you have at any given moment.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div style="width:22px;height:22px;border-radius:50%;background:var(--primary-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="fas fa-check text-primary" style="font-size:11px"></i>
+              </div>
+              <div>
+                <div style="font-weight:600;font-size:14px;color:var(--neutral-800);margin-bottom:1px">Low Stock Alerts</div>
+                <div style="font-size:13px;color:var(--neutral-400);line-height:1.5">Automatic notifications when products fall below minimum thresholds.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-neutral-50">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="hero-badge">Reports</span>
+        <h2 class="fw-bold mb-3" style="letter-spacing:-0.025em">Data-Driven Business Reports</h2>
+        <p style="color:var(--neutral-500);max-width:520px;margin:0 auto;font-size:16px;line-height:1.7">Generate comprehensive reports on sales, inventory, and financial performance with one click.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon bg-primary-light text-primary" style="margin:0 auto 16px"><i class="fas fa-file-invoice-dollar"></i></div>
+            <h6 class="fw-semibold">Sales Reports</h6>
+            <p style="font-size:13px;color:var(--neutral-400);margin:0">Detailed breakdowns by product, category, and time period.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon bg-warning-light text-warning" style="margin:0 auto 16px"><i class="fas fa-boxes"></i></div>
+            <h6 class="fw-semibold">Inventory Reports</h6>
+            <p style="font-size:13px;color:var(--neutral-400);margin:0">Stock levels, movement history, and valuation summaries.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon bg-success-light text-success" style="margin:0 auto 16px"><i class="fas fa-chart-pie"></i></div>
+            <h6 class="fw-semibold">Financial Reports</h6>
+            <p style="font-size:13px;color:var(--neutral-400);margin:0">Revenue analysis, profit margins, and cost breakdowns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="hero-badge">Testimonials</span>
+        <h2 class="fw-bold mb-3">Trusted by Textile Businesses</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p style="font-size:14px;color:var(--neutral-600);margin-bottom:16px">"TexOptima transformed how we manage inventory. The AI forecast helped us reduce overstock by 30% in just two months."</p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="avatar">AK</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--neutral-800)">Ahmed Khan</div>
+                <div style="font-size:12px;color:var(--neutral-400)">Al-Karam Textile Mills</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p style="font-size:14px;color:var(--neutral-600);margin-bottom:16px">"The anomaly detection feature caught a pricing error we would have missed. It's like having a data analyst on the team."</p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="avatar" style="background:#3b82f6">FN</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--neutral-800)">Fatima Nadeem</div>
+                <div style="font-size:12px;color:var(--neutral-400)">Nadeem Fabrics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card">
+            <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p style="font-size:14px;color:var(--neutral-600);margin-bottom:16px">"Setting up was incredibly easy. The demo data let us explore everything before committing our own products."</p>
+            <div class="d-flex align-items-center gap-3">
+              <div class="avatar" style="background:#8b5cf6">UR</div>
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--neutral-800)">Omar Riaz</div>
+                <div style="font-size:12px;color:var(--neutral-400)">Riaz Textile Industries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:72px 0;background:linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%)">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-3" style="letter-spacing:-0.025em">Ready to Transform Your Textile Business?</h2>
+      <p style="color:var(--neutral-500);max-width:480px;margin:0 auto 28px;font-size:16px;line-height:1.7">
+        Join hundreds of textile SMEs already using TexOptima to manage inventory, forecast demand, and grow revenue.
+      </p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="auth/register.html" class="btn btn-primary btn-lg px-4">Start Free Trial <i class="fas fa-arrow-right ms-2"></i></a>
+        <a href="#features" class="btn btn-secondary btn-lg px-4">View Features</a>
+      </div>
+      <div style="color:var(--neutral-400);font-size:13px;margin-top:16px">Free 14-day trial. No credit card required.</div>
+    </div>
+  </section>
+
+  <footer style="background:var(--neutral-900);padding:60px 0 0">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="flex-shrink:0">
+              <rect width="32" height="32" rx="8" fill="#059669"/>
+              <path d="M10 10H22" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <path d="M16 10V23" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <path d="M12 19L15 16L18 18L21 14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-weight:700;font-size:18px;color:var(--white);letter-spacing:-0.02em">TexOptima</span>
+          </div>
+          <p style="font-size:14px;color:rgba(255,255,255,0.5);max-width:300px">
+            AI-powered decision support system for textile SMEs.
+          </p>
+        </div>
+        <div class="col-6 col-lg-2 footer-section">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2 footer-section">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2 footer-section">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr style="border-color:rgba(255,255,255,0.1);margin:40px 0">
+      <div class="d-flex flex-wrap align-items-center justify-content-between pb-4">
+        <div style="font-size:14px;color:rgba(255,255,255,0.4)">&copy; 2026 TexOptima. All Rights Reserved.</div>
+        <div class="d-flex gap-3">
+          <a href="#" style="color:rgba(255,255,255,0.4);font-size:18px"><i class="fab fa-linkedin"></i></a>
+          <a href="#" style="color:rgba(255,255,255,0.4);font-size:18px"><i class="fab fa-github"></i></a>
+          <a href="#" style="color:rgba(255,255,255,0.4);font-size:18px"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
